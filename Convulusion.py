@@ -1,6 +1,6 @@
 # Rafael Hinojosa López
 # 05 - 05 - 2021
-# Convulusion - Versión 1
+# Convulusion - Versión 2, con Padding
 
 import numpy as np
 
@@ -15,14 +15,18 @@ padding = int(input('Ingresa el valor para padding: '))
 
 # Matriz de 0s con padding
 Mat = np.zeros([(rowMat + (2 * padding)), (colMat + (2 * padding))]);
-print(Mat)
+
+rowMat += 2*padding
+colMat += 2*padding
+
 print('Llenar Matriz');
-for i in range(0, rowMat): 
+for i in range(padding, rowMat-padding): 
     print('Fila ' + str(i));
-    Mat.append([]);
-    for j in range(0, colMat):
+    for j in range(padding, colMat-padding):
         num = int(input());
-        Mat[i].append(num);
+        Mat[i][j] = num;
+
+print(Mat)
 
 # Llenar Kernel
 rowKer = int(input('Ingresa el número de filas del kernel: '));
@@ -42,15 +46,15 @@ print('Kernel: ' + str(Ker))
 
 # Convulsion
 # Iterar Matriz
-for i in range(0, (rowMat - rowKer + 1)):
+for i in range(padding, (rowMat - rowKer + 1)):
     Output.append([]);
-    for j in range(0, (colMat - colKer + 1)):
+    for j in range(padding, (colMat - colKer + 1)):
         producto = 0; 
         # Iterar Kernel
         for ik in range(0, rowKer):
             for jk in range(0, colKer): 
                 producto += Ker[ik][jk] * Mat[i + ik][j + jk];
-        Output[i].append(producto);
+        Output[i - padding].append(producto);
 
 # Resultado
 print('Output' + str(Output))
