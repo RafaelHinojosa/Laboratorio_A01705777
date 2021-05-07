@@ -2,15 +2,20 @@
 # 05 - 05 - 2021
 # Convulusion - Versión 1
 
+import numpy as np
+
 # Matrices
-Mat = []
 Ker = []
 Output = []
 
 # Llenar Matriz
 rowMat = int(input('Ingresa el número de filas de la matriz: '));
 colMat = int(input('Ingresa el número de columnas de la matriz: '));
+padding = int(input('Ingresa el valor para padding: '))
 
+# Matriz de 0s con padding
+Mat = np.zeros([(rowMat + (2 * padding)), (colMat + (2 * padding))]);
+print(Mat)
 print('Llenar Matriz');
 for i in range(0, rowMat): 
     print('Fila ' + str(i));
@@ -49,3 +54,6 @@ for i in range(0, (rowMat - rowKer + 1)):
 
 # Resultado
 print('Output' + str(Output))
+
+# Checar ranges en Convolusion... 
+# Hacer matriz np zeroes para imagen y esa sera la padded image...
